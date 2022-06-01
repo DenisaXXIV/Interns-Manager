@@ -1,0 +1,20 @@
+.newInternComp {
+    padding: 50px 30px 30px 30px;
+    background-color: beige;
+    height: 100%;
+  
+    .add-intern-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+
+      
+    }
+
+    .button{
+        border-radius: 15px;
+        border-color: black;
+        border-style:dashed;
+    }
+    
+  }
