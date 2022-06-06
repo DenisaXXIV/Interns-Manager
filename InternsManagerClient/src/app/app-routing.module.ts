@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddInternComponent } from './Records/add-intern/add-intern.component';
+import { AddPageComponent } from './add-records/add-page/add-page.component';
 import { HomeComponent } from './Records/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'add-intern', component: AddInternComponent },
-  { path: 'add-intern/:id', component: AddInternComponent },
+  {
+    path: '',
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'add', component: AddPageComponent },
+      { path: 'add/:id', component: AddPageComponent },
+    ]
+  }
 ];
 
 @NgModule({

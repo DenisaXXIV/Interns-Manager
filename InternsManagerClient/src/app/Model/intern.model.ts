@@ -1,7 +1,6 @@
 export interface Intern {
-    id:string;
-    name:string;
-    age:number;
-    dateOfBirth: string;
-    gender: string;
+    idIntern: number;
+    idPerson: number;
+    idInternship: number;
+    vacationDays: number;
 }

@@ -14,10 +14,10 @@ namespace InternsManager.BL.Classes
 {
     public class InternLogic : IInternLogic
     {
-        private readonly IRepository _internRepository;
+        private readonly IRepository<Intern> _internRepository;
         private readonly IMapper _mapper;
 
-        public InternLogic(IRepository internRepository, IMapper mapper)
+        public InternLogic(IRepository<Intern> internRepository, IMapper mapper)
         {
             _internRepository = internRepository;
             _mapper = mapper;
@@ -53,30 +53,7 @@ namespace InternsManager.BL.Classes
             try
             {
                 var results = _mapper.Map<List<InternDTO>>(await _internRepository.GetAll());
-                result = results.FirstOrDefault(a => a.Id == id);
-                if (result == null)
-                {
-                    throw new DbUpdateException();
-                }
-                return result;
-            }
-            catch (DbUpdateException)
-            {
-                throw;
-            }
-        }
-
-        public async Task<InternDTO> GetByName(string name)
-        {
-            if (name == null)
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
-            InternDTO result;
-            try
-            {
-                var results = _mapper.Map<List<InternDTO>>(await _internRepository.GetAll());
-                result = results.FirstOrDefault(a => a.Name == name);
+                result = results.FirstOrDefault(a => a.IdIntern == id);
                 if (result == null)
                 {
                     throw new DbUpdateException();
@@ -97,7 +74,7 @@ namespace InternsManager.BL.Classes
             }
             try
             {
-                await _internRepository.Delete(internDTO.Id);
+                await _internRepository.Delete(internDTO.IdIntern);
                 return true;
             }
             catch (DbUpdateException)
@@ -118,7 +95,7 @@ namespace InternsManager.BL.Classes
             try
             {
                 var entity = _mapper.Map<Intern>(newInternDTO);
-                await _internRepository.Delete(oldIntern.Id);
+                await _internRepository.Delete(oldIntern.IdIntern);
                 await _internRepository.Add(entity);
                 return true;
             }

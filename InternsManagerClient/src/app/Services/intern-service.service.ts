@@ -9,7 +9,7 @@ import { Intern } from '../Model/intern.model';
 })
 export class InternServiceService {
 
-  readonly baseUrl = 'http://localhost:7169'
+  readonly baseUrl = 'http://localhost:7124'
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,13 +36,11 @@ export class InternServiceService {
   }
 
   deleteIntern(intern: Intern) {
-    let jsonNoteID = JSON.stringify(intern.id)
-    // return this.http.delete(this.baseUrl + '/Notes/Delete/' + jsonNoteID, this.httpOptions);
-    return this.http.delete(`${this.baseUrl}/Intern/delete/${intern.id}`, this.httpOptions);
+    return this.http.delete(`${this.baseUrl}/Intern/delete/${intern.idIntern}`, this.httpOptions);
   }
 
   editIntern(id: string, intern: Intern) {
-    return this.http.put(this.baseUrl + "/Intern/update" + id, intern, this.httpOptions);
+    return this.http.put(this.baseUrl + "/Intern/update/" + id, intern, this.httpOptions);
   }
 
 }

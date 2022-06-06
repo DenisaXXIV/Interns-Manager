@@ -12,7 +12,6 @@ namespace InternsManager.BL.Interfaces
         Task AddIntern(InternDTO internDTO);
         Task<List<InternDTO>> GetAll();
         Task<InternDTO> GetById(int id);
-        Task<InternDTO> GetByName(string name);
         Task<bool> RemoveIntern(InternDTO internDTO);
         Task<bool> UpdateIntern(int id, InternDTO newInternDTO);
     }

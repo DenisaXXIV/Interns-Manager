@@ -9,6 +9,8 @@ namespace InternsManager.AutoMapperConfig
         public AutoMapperProfile()
         {
             CreateMap<Intern, InternDTO>().ReverseMap();
+            CreateMap<Person, PersonDTO>().ReverseMap();
+            CreateMap<Internship, InternshipDTO>().ReverseMap();
         }
     }
 }

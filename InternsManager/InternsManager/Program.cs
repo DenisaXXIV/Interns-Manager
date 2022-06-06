@@ -14,15 +14,17 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=ManagingRecordDB;Trusted_Connection=True;MultipleActiveResultSets=true";
+var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=InternsDB;Trusted_Connection=True;MultipleActiveResultSets=true";
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Transient);
 
 #region Transient
-builder.Services.AddTransient<IRepository, InternsManagerRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(InternsManagerRepository<>));
 builder.Services.AddTransient<IInternLogic, InternLogic>();
+builder.Services.AddTransient<IPersonLogic, PersonLogic>();
+builder.Services.AddTransient<IInternshipLogic, InternshipLogic>();
 #endregion
 
 

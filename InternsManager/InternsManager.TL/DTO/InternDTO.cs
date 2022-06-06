@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +10,9 @@ namespace InternsManager.TL.DTO
 {
     public class InternDTO
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string DateOfBirth { get; set; }
-        public string Gender { get; set; }
-        public string PicPath { get; set; }
-
-        public override string ToString()
-        {
-            return Name + "( " + Age + ")";
-        }
+        public int IdIntern { get; set; }
+        public int IdPerson { get; set; }
+        public int IdInternship { get; set; }
+        public int VacationDays { get; set; }
     }
 }

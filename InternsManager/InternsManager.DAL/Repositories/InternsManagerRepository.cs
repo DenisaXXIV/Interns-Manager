@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InternsManager.DAL.Repositories
 {
-    public class InternsManagerRepository : IRepository
+    public class InternsManagerRepository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;
 
@@ -19,29 +19,29 @@ namespace InternsManager.DAL.Repositories
             _context = context;
         }
 
-        public async Task<Intern> Add(Intern intern)
+        public async Task<T> Add(T entity)
         {
-            if (intern != null)
+            if (entity != null)
             {
-                _context.Set<Intern>().Add(intern);
+                _context.Set<T>().Add(entity);
                 await _context.SaveChangesAsync();
-                return intern;
+                return entity;
             }
             throw new DbUpdateException();
         }
 
-        public async Task<Intern> Delete(int id)
+        public async Task<T> Delete(int id)
         {
-            Intern intern = await _context.Set<Intern>().FindAsync(id);
-            if (intern == null)
+            T entity = await _context.Set<T>().FindAsync(id);
+            if (entity == null)
             {
                 return null;
             }
             try
             {
-                _context.Set<Intern>().Remove(intern);
+                _context.Set<T>().Remove(entity);
                 await _context.SaveChangesAsync();
-                return intern;
+                return entity;
             }
             catch (DbUpdateException)
             {
@@ -53,13 +53,13 @@ namespace InternsManager.DAL.Repositories
             }
         }
 
-        public async Task<Intern> FindById(int id)
+        public async Task<T> FindById(int id)
         {
             if (id <= 0)
             {
                 throw new ArgumentException(nameof(id));
             }
-            var result = await _context.Set<Intern>().FindAsync(id);
+            var result = await _context.Set<T>().FindAsync(id);
             if (result != null)
             {
                 return result;
@@ -67,24 +67,24 @@ namespace InternsManager.DAL.Repositories
             throw new DbUpdateException();
         }
 
-        public async Task<List<Intern>> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            return await _context.Set<Intern>().ToListAsync();
+            return await _context.Set<T>().ToListAsync();
         }
 
 
 
-        public async Task<Intern> Update(Intern intern)
+        public async Task<T> Update(T entity)
         {
-            if (intern == null)
+            if (entity == null)
             {
-                throw new ArgumentNullException(nameof(intern));
+                throw new ArgumentNullException(nameof(entity));
             }
             try
             {
-                _context.Entry(intern).State = EntityState.Modified;
+                _context.Entry(entity).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return intern;
+                return entity;
             }
             catch (DbUpdateException)
             {

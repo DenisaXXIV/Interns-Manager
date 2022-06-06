@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\InternsManager.BL\InternsManager.BL.csproj" />
     <ProjectReference Include="..\InternsManager.DAL\InternsManager.DAL.csproj" />
     <ProjectReference Include="..\InternsManager.TL\InternsManager.TL.csproj" />
