@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "zQwGGEUM8Pe9Z5QvhDVX8Lml5oU3OQJV46jK/7UWVlfk91E3kzhHXyPSW2XJD3zXDQvunFvBRVYp73h+qKETIQ==",
+  "dgSpecHash": "od9XWMcDKrIcFo7XQUBuFXWjlfTr0Av9d/ZV2SyBa0msiDw0cZTSoSAfrXwV59Ov40TtelizLs2e06rXBzMCrQ==",
   "success": true,
   "projectFilePath": "E:\\Proiecte\\Interns-Manager\\InternsManager\\InternsManager.TL\\InternsManager.TL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Denisa\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Denisa\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Denisa\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Denisa\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Denisa\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Denisa\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

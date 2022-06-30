@@ -25,6 +25,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(InternsManagerRepositor
 builder.Services.AddTransient<IInternLogic, InternLogic>();
 builder.Services.AddTransient<IPersonLogic, PersonLogic>();
 builder.Services.AddTransient<IInternshipLogic, InternshipLogic>();
+builder.Services.AddTransient<IAdminLogic, AdminLogic>();
 #endregion
 
 

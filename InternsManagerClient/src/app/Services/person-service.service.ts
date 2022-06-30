@@ -23,7 +23,7 @@ export class PersonServiceService {
     return this.http.get<Person[]>(this.baseUrl + "/Person", this.httpOptions);
   }
 
-  getPerson(personID: string): Observable<Person> {
+  getPerson(personID: number): Observable<Person> {
     return this.http.get<Person>(this.baseUrl + "/Person/" + personID, this.httpOptions);
   }
 
@@ -38,7 +38,7 @@ export class PersonServiceService {
     return this.http.delete(`${this.baseUrl}/Person/delete/${person.idPerson}`, this.httpOptions);
   }
 
-  editPerson(id: string, person: Person) {
+  editPerson(id: number, person: Person) {
     return this.http.put(this.baseUrl + "/Person/update/" + id, person, this.httpOptions);
   }
 }

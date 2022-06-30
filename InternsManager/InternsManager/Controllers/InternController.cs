@@ -30,6 +30,21 @@ namespace InternsManager.Controllers
             return Ok(await _internLogic.GetAll());
         }
 
+        /// <summary>
+        /// Get number of interns
+        /// </summary>
+        /// <returns>a number of interns</returns>
+        /// <response code="200">a single number</response>
+        /// <response code="403">Forbidden</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Server problems</response>
+        /// <response code="429">Too Many Requests</response>
+        [HttpGet("get-number")]
+        public async Task<IActionResult> GetNumbers()
+        {
+            return Ok(await _internLogic.GetNumberInterns());
+        }
+
 
         /// <summary>
         /// Get intern by id

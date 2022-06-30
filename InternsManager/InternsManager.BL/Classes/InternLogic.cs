@@ -66,6 +66,22 @@ namespace InternsManager.BL.Classes
             }
         }
 
+        public async Task<int> GetNumberInterns()
+        {
+            int number = 0;
+            try
+            {
+                var results = _mapper.Map<List<InternDTO>>(await _internRepository.GetAll());
+                number = results.Count();
+
+                return number;
+            }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
+        }
+
         public async Task<bool> RemoveIntern(InternDTO internDTO)
         {
             if (internDTO == null)

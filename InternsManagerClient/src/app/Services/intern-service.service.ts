@@ -1,4 +1,5 @@
 
+import { NumberFormatStyle } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
@@ -24,8 +25,12 @@ export class InternServiceService {
     return this.http.get<Intern[]>(this.baseUrl + "/Intern", this.httpOptions);
   }
 
-  getIntern(internID: string): Observable<Intern> {
+  getIntern(internID: number): Observable<Intern> {
     return this.http.get<Intern>(this.baseUrl + "/Intern/" + internID, this.httpOptions);
+  }
+
+  getNumberOfInterns(): Observable<number> {
+    return this.http.get<number>(this.baseUrl + "/get-number" , this.httpOptions);
   }
 
   addIntern(intern: Intern) {
@@ -39,7 +44,7 @@ export class InternServiceService {
     return this.http.delete(`${this.baseUrl}/Intern/delete/${intern.idIntern}`, this.httpOptions);
   }
 
-  editIntern(id: string, intern: Intern) {
+  editIntern(id: number, intern: Intern) {
     return this.http.put(this.baseUrl + "/Intern/update/" + id, intern, this.httpOptions);
   }
 

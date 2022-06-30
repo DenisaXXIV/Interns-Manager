@@ -76,3 +76,4 @@ E:\Proiecte\Interns-Manager\InternsManager\InternsManager\bin\Debug\net6.0\Inter
 E:\Proiecte\Interns-Manager\InternsManager\InternsManager\bin\Debug\net6.0\InternsManager.BL.pdb
 E:\Proiecte\Interns-Manager\InternsManager\InternsManager\bin\Debug\net6.0\InternsManager.DAL.pdb
 E:\Proiecte\Interns-Manager\InternsManager\InternsManager\bin\Debug\net6.0\InternsManager.TL.pdb
+E:\Proiecte\Interns-Manager\InternsManager\InternsManager\bin\Debug\net6.0\BCrypt.Net-Next.dll

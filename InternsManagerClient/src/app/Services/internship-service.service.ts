@@ -23,7 +23,7 @@ export class InternshipServiceService {
     return this.http.get<Internship[]>(this.baseUrl + "/Internship", this.httpOptions);
   }
 
-  getInternship(internshipID: string): Observable<Internship> {
+  getInternship(internshipID: number): Observable<Internship> {
     return this.http.get<Internship>(this.baseUrl + "/Internship/" + internshipID, this.httpOptions);
   }
 
@@ -38,7 +38,7 @@ export class InternshipServiceService {
     return this.http.delete(`${this.baseUrl}/Internship/delete/${internship.idInternship}`, this.httpOptions);
   }
 
-  editInternship(id: string, internship: Internship) {
+  editInternship(id: number, internship: Internship) {
     return this.http.put(this.baseUrl + "/Internship/update/" + id, internship, this.httpOptions);
   }
 }

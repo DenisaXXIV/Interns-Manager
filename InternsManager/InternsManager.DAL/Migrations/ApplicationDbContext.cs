@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bCrypt = BCrypt.Net.BCrypt;
 
 namespace InternsManager.DAL.Migrations
 {
@@ -14,6 +15,7 @@ namespace InternsManager.DAL.Migrations
         {
         }
 
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Intern> Interns { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Internship> Internships { get; set; }
@@ -70,6 +72,14 @@ namespace InternsManager.DAL.Migrations
                      DateOfBirth = "2001-11-29",
                      Gender = "F",
                      PicPath = "https://cdn.pixabay.com/photo/2017/08/28/16/29/portrait-2690308_1280.jpg"
+                 },
+                 new Person
+                 {
+                     IdPerson = 7,
+                     Name = "Stefania Neagu",
+                     DateOfBirth = "1977-03-07",
+                     Gender = "F",
+                     PicPath = "https://pixabay.com/get/gffc1d520603515ef286493847cebeab3b46d1b6e29250bceac008431920a5570bd6cc874b1efe2e58a3e766271af1e9329582245e58ae87739687318cae97df6a4e690a31d0245e9ff5b808edc166aa6_1920.jpg"
                  });
 
             modelBuilder.Entity<Intern>().HasData(
@@ -152,8 +162,16 @@ namespace InternsManager.DAL.Migrations
                     EndDate = "2022-09-19",
                     SalaryBRUT = "1620 Lei",
                     Position = "Junior Programmer"
-                }
-                );
+                });
+
+            modelBuilder.Entity<Admin>().HasData(
+                new Admin
+                {
+                    IdAdmin = 1,
+                    IdPerson = 7,
+                    Username = "SNeagu",
+                    Password = bCrypt.HashPassword("admin1").ToString()
+                });
         }
     }
 }

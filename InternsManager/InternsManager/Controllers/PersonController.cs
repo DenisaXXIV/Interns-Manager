@@ -41,7 +41,7 @@ namespace InternsManager.Controllers
         /// <response code="500">Server problems</response>
         /// <response code="429">Too Many Requests</response>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetIntern([FromRoute] int id)
+        public async Task<IActionResult> GetPerson([FromRoute] int id)
         {
             return Ok(await _personLogic.GetById(id));
         }
