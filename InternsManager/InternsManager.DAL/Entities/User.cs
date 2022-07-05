@@ -8,18 +8,25 @@ using System.Threading.Tasks;
 
 namespace InternsManager.DAL.Entities
 {
-    public class Admin
+    public class User
     {
         [Required]
         [Key]
-        public int IdAdmin { get; set; }
+        public int IdUser { get; set; }
 
         [Required(ErrorMessage = "*** Person Err ***")]
         [ForeignKey("Person")]
         public int IdPerson { get; set; }
 
+        [Required(ErrorMessage = "*** Role Err ***")]
+        [ForeignKey("Role")]
+        public int IdRole { get; set; }
+
         [Required(ErrorMessage = "*** Username Err ***")]
         public string Username { get; set; }
+
+        [Required(ErrorMessage = "*** Mail Err ***")]
+        public string Mail { get; set; }
 
         [Required(ErrorMessage = "*** Password Err ***")]
         public string Password { get; set; }

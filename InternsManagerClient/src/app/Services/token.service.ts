@@ -5,7 +5,7 @@ import { Token } from '../Model/token.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TokenInterceptorService {
+export class TokenService {
 
   constructor(private jwtHelper:JwtHelperService) 
   { 
@@ -22,7 +22,7 @@ export class TokenInterceptorService {
   {
     let tokenCoded:string = localStorage.getItem("accessToken") as string;
 
-    let userId:number = this.jwtHelper.decodeToken(tokenCoded)["UserId"] as number;
+    let userId:number = this.jwtHelper.decodeToken(tokenCoded)["IdUser"] as number;
     let role:string = this.jwtHelper.decodeToken(tokenCoded)["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
     let token:Token = new Token(userId,role);

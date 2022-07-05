@@ -14,12 +14,12 @@ namespace InternsManager.BL.Classes
 {
     public class PersonLogic : IPersonLogic
     {
-        private readonly IRepository<Person> _internRepository;
+        private readonly IRepository<Person> _personRepository;
         private readonly IMapper _mapper;
 
-        public PersonLogic(IRepository<Person> internRepository, IMapper mapper)
+        public PersonLogic(IRepository<Person> personRepository, IMapper mapper)
         {
-            _internRepository = internRepository;
+            _personRepository = personRepository;
             _mapper = mapper;
         }
 
@@ -32,7 +32,7 @@ namespace InternsManager.BL.Classes
             try
             {
                 var entity = _mapper.Map<Person>(personDTO);
-                await _internRepository.Add(entity);
+                await _personRepository.Add(entity);
             }
             catch (DbUpdateException)
             {
@@ -49,8 +49,8 @@ namespace InternsManager.BL.Classes
             PersonDTO result;
             try
             {
-                var results = _mapper.Map<List<PersonDTO>>(await _internRepository.GetAll());
-                result = results.FirstOrDefault(a => a.Name == name);
+                var results = _mapper.Map<List<PersonDTO>>(await _personRepository.GetAll());
+                result = results.FirstOrDefault(a => a.Name == name) ?? throw new ArgumentNullException(nameof(name));
                 if (result == null)
                 {
                     throw new DbUpdateException();
@@ -65,7 +65,7 @@ namespace InternsManager.BL.Classes
 
         public async Task<List<PersonDTO>> GetAll()
         {
-            var results = _mapper.Map<List<PersonDTO>>(await _internRepository.GetAll());
+            var results = _mapper.Map<List<PersonDTO>>(await _personRepository.GetAll());
             return results;
         }
 
@@ -74,8 +74,8 @@ namespace InternsManager.BL.Classes
             PersonDTO result;
             try
             {
-                var results = _mapper.Map<List<PersonDTO>>(await _internRepository.GetAll());
-                result = results.FirstOrDefault(a => a.IdPerson == id);
+                var results = _mapper.Map<List<PersonDTO>>(await _personRepository.GetAll());
+                result = results.FirstOrDefault(a => a.IdPerson == id) ?? throw new ArgumentNullException(nameof(id));
                 if (result == null)
                 {
                     throw new DbUpdateException();
@@ -96,7 +96,7 @@ namespace InternsManager.BL.Classes
             }
             try
             {
-                await _internRepository.Delete(personDTO.IdPerson);
+                await _personRepository.Delete(personDTO.IdPerson);
                 return true;
             }
             catch (DbUpdateException)
@@ -112,13 +112,13 @@ namespace InternsManager.BL.Classes
                 throw new ArgumentNullException(nameof(newPersonDTO));
             }
 
-            Person person = await _internRepository.FindById(id);
+            Person person = await _personRepository.FindById(id);
 
             try
             {
                 var entity = _mapper.Map<Person>(newPersonDTO);
-                await _internRepository.Delete(person.IdPerson);
-                await _internRepository.Add(entity);
+                await _personRepository.Delete(person.IdPerson);
+                await _personRepository.Add(entity);
                 return true;
             }
             catch (DbUpdateException)

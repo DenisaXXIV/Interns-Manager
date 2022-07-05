@@ -21,39 +21,6 @@ namespace InternsManager.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("InternsManager.DAL.Entities.Admin", b =>
-                {
-                    b.Property<int>("IdAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAdmin"), 1L, 1);
-
-                    b.Property<int>("IdPerson")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdAdmin");
-
-                    b.ToTable("Admins");
-
-                    b.HasData(
-                        new
-                        {
-                            IdAdmin = 1,
-                            IdPerson = 7,
-                            Password = "$2a$11$oxugnHJQ1NUogyxXyN5tEedqgTmNFSYw.WBBVER5UVOSFsaathz3y",
-                            Username = "SNeagu"
-                        });
-                });
-
             modelBuilder.Entity("InternsManager.DAL.Entities.Intern", b =>
                 {
                     b.Property<int>("IdIntern")
@@ -275,6 +242,82 @@ namespace InternsManager.DAL.Migrations
                             Gender = "F",
                             Name = "Stefania Neagu",
                             PicPath = "https://pixabay.com/get/gffc1d520603515ef286493847cebeab3b46d1b6e29250bceac008431920a5570bd6cc874b1efe2e58a3e766271af1e9329582245e58ae87739687318cae97df6a4e690a31d0245e9ff5b808edc166aa6_1920.jpg"
+                        });
+                });
+
+            modelBuilder.Entity("InternsManager.DAL.Entities.Role", b =>
+                {
+                    b.Property<int>("IdRole")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRole"), 1L, 1);
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdRole");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            IdRole = 1,
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            IdRole = 2,
+                            RoleName = "Intern"
+                        },
+                        new
+                        {
+                            IdRole = 3,
+                            RoleName = "Employee"
+                        });
+                });
+
+            modelBuilder.Entity("InternsManager.DAL.Entities.User", b =>
+                {
+                    b.Property<int>("IdUser")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUser"), 1L, 1);
+
+                    b.Property<int>("IdPerson")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdRole")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdUser");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            IdUser = 1,
+                            IdPerson = 7,
+                            IdRole = 1,
+                            Mail = "sneagu@manager.ro",
+                            Password = "$2a$11$RZYgi.x5DMK1HKUWmBylSuFTIXjF1VWSZ1dAd//s75khCW10//qa6",
+                            Username = "SNeagu"
                         });
                 });
 #pragma warning restore 612, 618

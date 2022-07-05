@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { Admin } from 'src/app/Model/admin.model';
+import { User } from 'src/app/Model/user.model';
 import { Person } from 'src/app/Model/person.model';
-import { AdminServiceService } from 'src/app/Services/admin-service.service';
-import { PersonServiceService } from 'src/app/Services/person-service.service';
+import { UserService } from 'src/app/Services/user.service';
+import { PersonService } from 'src/app/Services/person.service';
 
 @Component({
   selector: 'personCard',
@@ -12,12 +12,12 @@ import { PersonServiceService } from 'src/app/Services/person-service.service';
 })
 export class PersonCardComponent implements OnInit {
   persons: Person[] = [];
-  admins: Admin[] = [];
+  users: User[] = [];
   getPersonsSub: Subscription = new Subscription;
-  getAdminsSub: Subscription = new Subscription;
+  getUsersSub: Subscription = new Subscription;
   sources: string[] = [];
 
-  constructor(private personService: PersonServiceService, private adminService: AdminServiceService) { }
+  constructor(private personService: PersonService, private userService: UserService) { }
 
   ngOnChanges(): void {
     this.ngOnInit();
@@ -25,7 +25,7 @@ export class PersonCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPersonsSub = this.personService.getPersons().subscribe((persons) => { this.persons = persons });
-    this.getAdminsSub = this.adminService.getAdmins().subscribe((admins) => { this.admins = admins});
+    this.getUsersSub = this.userService.getUsers().subscribe((users) => { this.users = users});
   }
 
   deletePerson(person: Person) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from 'src/app/Model/person.model';
-import { PersonServiceService } from 'src/app/Services/person-service.service';
+import { PersonService } from 'src/app/Services/person.service';
 
 @Component({
   selector: 'app-add-person',
@@ -14,7 +14,7 @@ export class AddPersonComponent implements OnInit {
   inputGender: string = '';
   inputPicPath: string = '';
   
-  constructor(private service: PersonServiceService) { }
+  constructor(private service: PersonService) { }
 
   ngOnChanges(): void {
     this.ngOnInit();

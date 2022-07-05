@@ -6,7 +6,7 @@ import { Person } from '../Model/person.model';
 @Injectable({
   providedIn: 'root'
 })
-export class PersonServiceService {
+export class PersonService {
 
   readonly baseUrl = 'http://localhost:7124'
   readonly httpOptions = {

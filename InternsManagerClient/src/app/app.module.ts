@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -28,7 +27,9 @@ import { InternPagesModule } from './intern-pages/intern-pages.module';
 import { InternshipPagesModule } from './internship-pages/internship-pages.module';
 import { PersonPagesModule } from './person-pages/person-pages.module';
 import { ProfileModule } from './profile/profile.module';
-import { AuthService } from './tools/guard/auth.service';
+import { FormsModule } from '@angular/forms';
+import { AuthGuardService } from './Services/auth-guard.service';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AuthService } from './tools/guard/auth.service';
     HttpClientModule,
     CommonModule,
     FormsModule,
+    JwtModule,
 
     ToolsModule,
     HomeModule,
@@ -66,7 +68,7 @@ import { AuthService } from './tools/guard/auth.service';
     MatListModule,
     MatDividerModule
   ],
-  providers: [AuthService],
+  providers: [AuthGuardService,JwtHelperService,{provide:JWT_OPTIONS,useValue:JWT_OPTIONS}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

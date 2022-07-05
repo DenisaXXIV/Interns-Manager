@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/tools/guard/auth.service';
 import { SecurityService } from 'src/app/Services/security.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'logIn',
@@ -11,23 +11,79 @@ import { SecurityService } from 'src/app/Services/security.service';
 })
 export class LogInComponent implements OnInit {
 
-  username:string ='';
-  password:string = '';
+  private _username:string|undefined;
+  private _password:string|undefined;
+  private _httpResponse:HttpResponse<string> | null;
+  private _LoggedFailed:boolean | null;
 
-  ngOnInit(): void {
+  constructor(
+    private router:Router,
+    private securityService:SecurityService,
+    private Cookies:CookieService
+    ) 
+  {
+    this._httpResponse = null;
+    this._LoggedFailed = false;
+  }
+  
+  ngOnInit(): void 
+  {
   }
 
-  @ViewChild('closeModal') closeModal!: ElementRef;
+  ngOnDestroy():void
+  {
+    this._username = '';
+    this._password = '';
+    this._LoggedFailed = false;
+  }
+  
 
-  constructor(private authService: SecurityService){}
-
-  login(username: string,password:string) {
-    this.authService.login(username,password)
-      .subscribe(res => {
-        if (res.success) {
-          this.closeModal.nativeElement.click();
-        }
-      });
+  public set username(value:string)
+  {
+    this._username = value;
   }
 
+  public set password(value:string)
+  {
+    this._password = value;
+  }
+
+  public signIn() : void
+  {
+    if(this._username != undefined && this._password != undefined)
+    {
+      this.securityService.Login(this._username,this._password)
+      .subscribe(res=>
+        {
+            if(res.value != null)
+            {
+              let token:string = res.value;
+
+              localStorage.setItem('accessToken',token);
+
+              this.router.navigate(['']);
+
+              this.securityService.isAuthenticated = true;
+
+              
+            }
+        });
+      }
+
+  }
+
+  public LoggedIn():boolean|null
+  {
+    return this._LoggedFailed;
+  }
+
+  public checkFields():boolean
+  {
+    return true;
+  }
+
+  public forgotPassword():void 
+  {
+
+  }
 }

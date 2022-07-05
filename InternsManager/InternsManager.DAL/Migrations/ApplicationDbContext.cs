@@ -15,10 +15,11 @@ namespace InternsManager.DAL.Migrations
         {
         }
 
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Intern> Interns { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Internship> Internships { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -164,13 +165,32 @@ namespace InternsManager.DAL.Migrations
                     Position = "Junior Programmer"
                 });
 
-            modelBuilder.Entity<Admin>().HasData(
-                new Admin
+            modelBuilder.Entity<User>().HasData(
+                new User
                 {
-                    IdAdmin = 1,
+                    IdUser = 1,
                     IdPerson = 7,
                     Username = "SNeagu",
+                    Mail = "sneagu@manager.ro",
+                    IdRole = 1,
                     Password = bCrypt.HashPassword("admin1").ToString()
+                });
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role
+                {
+                    IdRole = 1,
+                    RoleName = "Admin",
+                },
+                new Role
+                {
+                    IdRole = 2,
+                    RoleName = "Intern",
+                },
+                new Role
+                {
+                    IdRole = 3,
+                    RoleName = "Employee",
                 });
         }
     }

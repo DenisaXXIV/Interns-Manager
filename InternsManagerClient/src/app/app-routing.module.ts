@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutPageComponent } from './about/about-page/about-page.component';
-import { AuthService } from './tools/guard/auth.service';
-import { UserTypes } from './tools/guard/user-types';
+import { UserTypes } from './Constants/user-types';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { NoPageFoundComponent } from './home/no-page-found/no-page-found.component';
 import { AddInternComponent } from './intern-pages/add-intern/add-intern.component';
@@ -15,6 +14,7 @@ import { AddPersonComponent } from './person-pages/add-person/add-person.compone
 import { EditPersonComponent } from './person-pages/edit-person/edit-person.component';
 import { PersonsPageComponent } from './person-pages/persons-page/persons-page.component';
 import { LogInComponent } from './profile/log-in/log-in.component';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -42,10 +42,10 @@ const routes: Routes = [
 
   // {
   //   path: '',
-  //   canActivateChild: [AuthService],
+  //   canActivateChild: [AuthGuardService],
   //   data:
   //   {
-  //     role: [UserTypes.ADMIN]
+  //     role: [UserTypes.ADMIN,UserTypes.INTERN,UserTypes.EMPLOYEE]
   //   },
   //   children: [
   //     { path: 'interns', component: InternsPageComponent },
@@ -55,7 +55,7 @@ const routes: Routes = [
 
   // {
   //   path: '',
-  //   canActivateChild: [AuthService],
+  //   canActivateChild: [AuthGuardService],
   //   data:
   //   {
   //     role: [UserTypes.ADMIN]

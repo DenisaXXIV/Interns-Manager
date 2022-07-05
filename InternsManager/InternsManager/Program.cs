@@ -3,7 +3,10 @@ using InternsManager.BL.Interfaces;
 using InternsManager.DAL.Migrations;
 using InternsManager.DAL.Repositories;
 using InternsManager.DAL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMemoryCache();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -20,12 +25,27 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Transient);
 
+builder.Services.AddScoped<IRoleLogic, RoleLogic>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = System.TimeSpan.FromMinutes(30);
+});
+
 #region Transient
 builder.Services.AddScoped(typeof(IRepository<>), typeof(InternsManagerRepository<>));
 builder.Services.AddTransient<IInternLogic, InternLogic>();
 builder.Services.AddTransient<IPersonLogic, PersonLogic>();
 builder.Services.AddTransient<IInternshipLogic, InternshipLogic>();
-builder.Services.AddTransient<IAdminLogic, AdminLogic>();
+builder.Services.AddTransient<IUserLogic, UserLogic>();
 #endregion
 
 
@@ -49,11 +69,11 @@ app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.UseRouting();
 
 app.MapControllers();
+
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 

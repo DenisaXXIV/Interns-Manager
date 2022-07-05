@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Internship } from 'src/app/Model/internship.model';
-import { InternshipServiceService } from 'src/app/Services/internship-service.service';
+import { InternshipService } from 'src/app/Services/internship.service';
 
 @Component({
   selector: 'app-add-internship',
@@ -18,7 +18,7 @@ export class AddInternshipComponent implements OnInit {
   Positions: string[] = ['Software Engineer Intern', 'QA Intern', 'Web Develover Intern', 'Junior Programmer Intern',
     'Intern', 'Cloud Support Intern', 'Tester Intern', 'Data Engineer Intern', 'Mobile Developer Intern',
     'Full Stack Developer Intern'];
-  constructor(private service: InternshipServiceService) { }
+  constructor(private service: InternshipService) { }
 
   ngOnInit(): void {
     this.start = new Date();

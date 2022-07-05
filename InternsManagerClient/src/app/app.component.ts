@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from './Services/security.service';
+import { TokenService } from './Services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -30,13 +31,23 @@ export class AppComponent implements AfterViewInit{
     private router:Router,
     private loginService: SecurityService,
     private observer: BreakpointObserver,
-    private activatedRoute: ActivatedRoute)
+    private activatedRoute: ActivatedRoute,
+    private tokenService:TokenService)
   {
   }
 
    public isAuthenticated():boolean
   {
-    return this.loginService.isLogin;
+    return this.loginService.isAuthenticated;
+  }
+
+  logOut() 
+  {
+    localStorage.removeItem('accessToken');
+
+    this.router.navigate(['/login']);
+
+    this.loginService.isAuthenticated = false;
   }
 
   setPic(): string{

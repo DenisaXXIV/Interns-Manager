@@ -8,7 +8,7 @@
         close
       </mat-icon>
     </button>
-    Managing Intern Records
+    Managing Interns
   </mat-toolbar>
 
   <mat-sidenav-container>
@@ -46,9 +46,20 @@
         <mat-icon>assignment</mat-icon>
         <span>Internships</span>
       </button>
+
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button" (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Log Out</span>
+      </button>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
+      <!-- <div class="copyright">
+        <p class="text-center text-gray-500 text-s">
+            &copy;2020 Toate drepturile rezervate.
+        </p>
+    </div> -->
     </mat-sidenav-content>
   </mat-sidenav-container>
 <!-- </div>

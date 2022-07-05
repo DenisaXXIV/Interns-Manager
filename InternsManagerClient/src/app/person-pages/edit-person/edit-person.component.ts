@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { Intern } from 'src/app/Model/intern.model';
 import { Internship } from 'src/app/Model/internship.model';
 import { Person } from 'src/app/Model/person.model';
-import { InternServiceService } from 'src/app/Services/intern-service.service';
-import { InternshipServiceService } from 'src/app/Services/internship-service.service';
-import { PersonServiceService } from 'src/app/Services/person-service.service';
+import { InternService } from 'src/app/Services/intern.service';
+import { InternshipService } from 'src/app/Services/internship.service';
+import { PersonService } from 'src/app/Services/person.service';
 
 @Component({
   selector: 'app-edit-person',
@@ -22,9 +22,7 @@ export class EditPersonComponent implements OnInit {
   intern!: Intern;
   person!: Person;
 
-  constructor(private serviceIntern: InternServiceService, private servicePerson: PersonServiceService,
-    private serviceInternship: InternshipServiceService,
-    private router: Router,
+  constructor(private serviceIntern: InternService, private servicePerson: PersonService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {

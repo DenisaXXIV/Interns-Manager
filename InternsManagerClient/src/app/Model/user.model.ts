@@ -1,6 +1,7 @@
-export interface Admin {
-    idAdmin: number;
+export interface User {
+    idUser: number;
     idPerson: number;
+    idRole: number,
     username: string;
     password: string;
 }

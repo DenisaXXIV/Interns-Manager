@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { Intern } from 'src/app/Model/intern.model';
 import { Internship } from 'src/app/Model/internship.model';
 import { Person } from 'src/app/Model/person.model';
-import { InternServiceService } from 'src/app/Services/intern-service.service';
-import { InternshipServiceService } from 'src/app/Services/internship-service.service';
-import { PersonServiceService } from 'src/app/Services/person-service.service';
+import { InternService } from 'src/app/Services/intern.service';
+import { InternshipService } from 'src/app/Services/internship.service';
+import { PersonService } from 'src/app/Services/person.service';
 
 @Component({
   selector: 'InternCard',
@@ -23,9 +23,9 @@ export class InternCardComponent implements OnInit {
   getInternshipsSub: Subscription = new Subscription;
   sources: string[] = [];
 
-  constructor(private internService: InternServiceService,
-    private personService: PersonServiceService,
-    private internshipService: InternshipServiceService) { }
+  constructor(private internService: InternService,
+    private personService: PersonService,
+    private internshipService: InternshipService) { }
 
   ngOnChanges(): void {
     this.ngOnInit();

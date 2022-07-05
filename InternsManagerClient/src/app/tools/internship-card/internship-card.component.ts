@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { Intern } from 'src/app/Model/intern.model';
 import { Internship } from 'src/app/Model/internship.model';
-import { Person } from 'src/app/Model/person.model';
-import { InternServiceService } from 'src/app/Services/intern-service.service';
-import { InternshipServiceService } from 'src/app/Services/internship-service.service';
-import { PersonServiceService } from 'src/app/Services/person-service.service';
+import { InternService } from 'src/app/Services/intern.service';
+import { InternshipService } from 'src/app/Services/internship.service';
 
 @Component({
   selector: 'internshipCard',
@@ -25,8 +22,8 @@ export class InternshipCardComponent implements OnInit {
     "https://cdn.pixabay.com/photo/2015/01/08/18/27/startup-593341_960_720.jpg"
   ];
 
-  constructor(private internshipService: InternshipServiceService,
-    private internService: InternServiceService) { }
+  constructor(private internshipService: InternshipService,
+    private internService: InternService) { }
 
   ngOnChanges(): void {
     this.ngOnInit();

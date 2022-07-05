@@ -11,7 +11,8 @@ namespace InternsManager.AutoMapperConfig
             CreateMap<Intern, InternDTO>().ReverseMap();
             CreateMap<Person, PersonDTO>().ReverseMap();
             CreateMap<Internship, InternshipDTO>().ReverseMap();
-            CreateMap<Admin, AdminDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Role, RoleDTO>().ReverseMap();
         }
     }
 }
